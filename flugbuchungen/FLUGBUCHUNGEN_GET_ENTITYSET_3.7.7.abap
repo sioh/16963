@@ -1,4 +1,3 @@
-method FLUGBUCHUNGSET_GET_ENTITYSET.
 DATA: ls_entity LIKE LINE OF et_entityset,
     ls_headerdata TYPE BAPISBODAT,
     lv_skip TYPE i,
@@ -54,13 +53,13 @@ RECEIVING
 "Falls der $orderby Parameter gesetzt wurde, wird ein String
 "für das SELECT-Statement gebaut.
 IF lt_orderby IS NOT INITIAL.
-LOOP AT lt_orderby INTO ls_orderby.
-  lv_order = 'ASCENDING'.
-  IF ls_orderby-order = 'desc'.
-    lv_order = 'DESCENDING'.
-  ENDIF.
-  CONCATENATE lv_orderby ls_orderby-property lv_order INTO lv_orderby SEPARATED BY space.
-ENDLOOP.
+  LOOP AT lt_orderby INTO ls_orderby.
+    lv_order = 'ASCENDING'.
+    IF ls_orderby-order = 'desc'.
+      lv_order = 'DESCENDING'.
+    ENDIF.
+    CONCATENATE lv_orderby ls_orderby-property lv_order INTO lv_orderby SEPARATED BY space.
+  ENDLOOP.
 ENDIF.
 
 IF ls_headerdata-customerid IS NOT INITIAL.
