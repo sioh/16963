@@ -22,8 +22,7 @@ CALL METHOD io_tech_request_context->get_select_with_mandtry_fields
 IF lt_select IS INITIAL.
   "Falls kein $select mitgegeben wurde,
   "sollen folgende Felder gelesen werden
-  lv_select = 'carrid bookid connid fldate customid class order_date
-               counter agencynum reserved cancelled passname'.
+  lv_select = 'carrid bookid connid fldate customid class order_date counter agencynum reserved cancelled passname'.
   SPLIT lv_select AT space INTO TABLE lt_select.
 
 ENDIF.
