@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <entry xmlns="http://www.w3.org/2005/Atom" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices" xml:base="http://Train18.sap.integrata.net:8000/sap/opu/odata/sap/ZFLIGHT_01_SRV/">
+ <content type="application/xml">
+<m:properties xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices">
+    <d:Carrid>AA</d:Carrid>
+    <d:Connid>0017</d:Connid>
+    <d:Fldate>2017-09-11T00:00:00</d:Fldate>
+    <d:Bookid>00000001</d:Bookid>
+    <d:Customid>00002128</d:Customid>
+    <d:Class>C</d:Class>
+    <d:OrderDate>2008-10-10T00:00:00</d:OrderDate>
+    <d:Counter>00000000</d:Counter>
+    <d:Agencynum>00000114</d:Agencynum>
+    <d:Cancelled/>
+    <d:Reserved/>
+    <d:Passname>Simon Henry</d:Passname>
+   </m:properties>
+  </content>
+ </entry>
