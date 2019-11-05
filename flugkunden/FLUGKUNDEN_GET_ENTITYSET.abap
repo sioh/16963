@@ -42,9 +42,7 @@
       RETURN.
     ENDIF.
 
-    CALL METHOD io_tech_request_context->get_top
-      RECEIVING
-        rv_top = lv_top.
+    lv_top = io_tech_request_context->get_top( ).
 
     lv_skip = io_tech_request_context->get_skip( ).
     IF lv_top IS NOT INITIAL.
