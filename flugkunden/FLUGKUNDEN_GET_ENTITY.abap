@@ -2,7 +2,7 @@
     DATA: ls_flugkunde     TYPE zcl_zflight_srv00_mpc=>ts_flugkunde,
           ls_flugbuchungen TYPE zcl_zflight_srv00_mpc=>ts_flugbuchung.
 
-    IF io_tech_request_context->get_source_entity_type_name( ) EQ 'Flugbuchung'.
+    IF io_tech_request_context->get_source_entity_type_name( ) EQ zcl_zflight_srv00_mpc=>gc_flugbuchung.
       CALL METHOD io_tech_request_context->get_converted_source_keys
         IMPORTING
           es_key_values = ls_flugbuchungen.
