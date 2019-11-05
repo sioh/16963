@@ -11,7 +11,7 @@
         lv_orderby TYPE string,
         lv_order TYPE string.
 
-    IF io_tech_request_context->get_source_entity_type_name( ) EQ 'Flugkunde'.
+    IF io_tech_request_context->get_source_entity_type_name( ) EQ zcl_zflight_srv00_mpc=>gc_flugkunde.
       CALL METHOD io_tech_request_context->get_converted_source_keys
         IMPORTING
           es_key_values = ls_flugkunde.
