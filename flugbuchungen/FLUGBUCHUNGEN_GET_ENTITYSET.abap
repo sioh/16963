@@ -1,6 +1,6 @@
   METHOD flugbuchungset_get_entityset.
     DATA: ls_entity LIKE LINE OF et_entityset,
-        ls_headerdata TYPE zcl_zflight_srv00_mpc=>ts_flugkunde,
+        ls_flugkunde TYPE zcl_zflight_srv00_mpc=>ts_flugkunde,
         lv_skip TYPE i,
         lv_top TYPE i,
         lv_select TYPE string,
@@ -14,13 +14,13 @@
     IF io_tech_request_context->get_source_entity_type_name( ) EQ 'Flugkunde'.
       CALL METHOD io_tech_request_context->get_converted_source_keys
         IMPORTING
-          es_key_values = ls_headerdata.
+          es_key_values = ls_flugkunde.
 
       "Verwendung einer Tabelle statt fester Spaltenangabe,
       "um dynamische Projektion zu ermöglichen.
       SELECT (lt_select)
       FROM sbook INTO CORRESPONDING FIELDS OF TABLE et_entityset
-      WHERE customid = ls_headerdata-customerid
+      WHERE customid = ls_flugkunde-customerid
       ORDER BY (lv_orderby).
     ELSE.
       "get_select_with_mandtry_fields liefert die Werte des $selectParameters
