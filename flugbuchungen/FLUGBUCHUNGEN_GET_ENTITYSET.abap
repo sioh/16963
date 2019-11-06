@@ -11,6 +11,17 @@
         lv_orderby TYPE string,
         lv_order TYPE string.
 
+      "get_select_with_mandtry_fields liefert die Werte des $selectParameters
+      "und die Schlüsselfelder des Entitätstyps.
+      lt_select = io_tech_request_context->get_select_with_mandtry_fields( ).
+
+      IF lt_select IS INITIAL.
+        "Falls kein $select mitgegeben wurde,
+        "sollen folgende Felder gelesen werden
+        lv_select = 'carrid bookid connid fldate customid class order_date counter agencynum reserved cancelled passname'.
+        SPLIT lv_select AT space INTO TABLE lt_select.
+      ENDIF.
+
     IF io_tech_request_context->get_source_entity_type_name( ) EQ zcl_zflight_srv00_mpc=>gc_flugkunde.
       CALL METHOD io_tech_request_context->get_converted_source_keys
         IMPORTING
@@ -23,17 +34,9 @@
       WHERE customid = ls_flugkunde-customerid
       ORDER BY (lv_orderby).
     ELSE.
-      "get_select_with_mandtry_fields liefert die Werte des $selectParameters
-      "und die Schlüsselfelder des Entitätstyps.
-      lt_select = io_tech_request_context->get_select_with_mandtry_fields( ).
-
-      IF lt_select IS INITIAL.
-        "Falls kein $select mitgegeben wurde,
-        "sollen folgende Felder gelesen werden
-        lv_select = 'carrid bookid connid fldate customid class order_date counter agencynum reserved cancelled passname'.
-        SPLIT lv_select AT space INTO TABLE lt_select.
-      ENDIF.
-
+      "get_filter liefert die Werte des $filter Parameters in einem Objekt
+      lv_osql_where_clause = io_tech_request_context->get_osql_where_clause( ).
+      
       "has_count liefert abap_true zurück, wenn der $count Parameter
       "in der URI gesetzt ist.
       IF io_tech_request_context->has_count( ) = abap_true.
@@ -46,9 +49,6 @@
         es_response_context-count = sy-dbcnt.
         RETURN.
       ENDIF.
-
-      "get_filter liefert die Werte des $filter Parameters in einem Objekt
-      lv_osql_where_clause = io_tech_request_context->get_osql_where_clause( ).
 
       "get_orderby liefert die Werte des $orderby-Parameters zurück.
       CALL METHOD io_tech_request_context->get_orderby
