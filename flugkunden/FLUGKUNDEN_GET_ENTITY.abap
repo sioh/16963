@@ -17,11 +17,10 @@
       CALL METHOD io_tech_request_context->get_converted_keys
         IMPORTING
           es_key_values = ls_flugkunde.
-
-      SELECT SINGLE
+    ENDIF.
+    SELECT SINGLE
              id AS customerid name AS custname form street postbox AS pobox
              postcode city country AS countr country AS countr_iso region
              telephone AS phone email
           FROM scustom INTO CORRESPONDING FIELDS OF er_entity WHERE id = ls_flugkunde-customerid.
-    ENDIF.
   ENDMETHOD.
