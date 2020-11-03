@@ -4,7 +4,8 @@ DATA: ls_flugkunde_odata TYPE zcl_zflight_01_mpc=>ts_flugkunde,
       lv_nav_path TYPE /iwbep/t_mgw_navigation_path,
       lt_key_tab TYPE /iwbep/t_mgw_name_value_pair,
       ls_key_tab LIKE LINE OF lt_key_tab,
-      lt_return TYPE bapiret2_t.
+      lt_return TYPE TABLE OF BAPIRET2,
+      ls_return TYPE BAPIRET2.
       
 CALL METHOD io_data_provider->read_entry_data
   IMPORTING
@@ -49,3 +50,15 @@ er_entity = ls_flugkunde_odata.
 *      IMPORTING
 *        er_entity = er_entity
 *    ).
+
+IF ls_return IS NOT INITIAL.
+   "Ist ls_return gesetzt, werden alle wiedergegebenen Fehler
+   "an den Message-Container gegeben und eine Ausnahme
+   "geworfen, die all diese Meldungen enthält und die letzte
+   "Fehlermeldung als übergeordneten Text anzeigt.
+   mo_context->get_message_container( )->add_messages_from_bapi( lt_return ).
+   RAISE EXCEPTION TYPE /IWBEP/CX_MGW_BUSI_EXCEPTION
+    EXPORTING
+     message_container = mo_context->get_message_container( )
+     message = ls_return-message.
+ENDIF.
