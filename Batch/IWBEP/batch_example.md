@@ -63,3 +63,22 @@ Accept: application/json
 --changeset--
 --batch--
 ```
+### Für multiple GET Request
+
+```
+--batch Content-Type: application/http
+Content-Transfer-Encoding: binary
+
+GET FlugbuchungSet?$top=5 HTTP/1.1
+Accept: application/json
+
+
+--batch
+Content-Type: application/http
+Content-Transfer-Encoding: binary
+GET FlugkundeSet?$top=5 HTTP/1.1
+Accept: application/json
+
+
+--batch--
+```
