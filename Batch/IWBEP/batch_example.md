@@ -76,6 +76,7 @@ Accept: application/json
 --batch
 Content-Type: application/http
 Content-Transfer-Encoding: binary
+
 GET FlugkundeSet?$top=5 HTTP/1.1
 Accept: application/json
 
