@@ -66,7 +66,8 @@ Accept: application/json
 ### Für multiple GET Request
 
 ```
---batch Content-Type: application/http
+--batch
+Content-Type: application/http
 Content-Transfer-Encoding: binary
 
 GET FlugbuchungSet?$top=5 HTTP/1.1
